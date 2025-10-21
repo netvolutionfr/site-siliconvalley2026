@@ -1,14 +1,15 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, cubicBezier } from "framer-motion";
 import {useRef, useState} from "react";
 import Gallery from "@/app/components/Gallery";
+import Image from "next/image";
 
 export default function Page() {
     const fade = {
         initial: { opacity: 0, y: 16 },
         whileInView: { opacity: 1, y: 0 },
         viewport: { once: true, margin: "-10%" },
-        transition: { duration: 0.5, ease: "easeOut" },
+        transition: { duration: 0.5, ease: cubicBezier(0.16, 1, 0.3, 1) },
     };
 
     // Parallax for hero
@@ -37,7 +38,7 @@ export default function Page() {
                             {caption ?? ""}
                         </motion.h2>
                         <motion.p {...fade} className="mt-4 text-neutral-300 dark:text-neutral-300">
-                            Une immersion au cœur de l'innovation : visites de campus et de sièges emblématiques, mises en contexte des métiers, et rencontres selon disponibilités.
+                            Une immersion au cœur de l&#39;innovation : visites de campus et de sièges emblématiques, mises en contexte des métiers, et rencontres selon disponibilités.
                         </motion.p>
                         <motion.ul {...fade} className="mt-6 grid grid-cols-2 gap-3 text-sm">
                             <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">✈️<span className="ml-3">Vol direct AF</span></li>
@@ -47,7 +48,7 @@ export default function Page() {
                         </motion.ul>
                     </div>
                     <motion.div style={{ y }} className="order-1 md:order-2 relative rounded-3xl overflow-hidden border shadow-xl">
-                        <img src={src} alt={alt} className="w-full h-full object-cover" />
+                        <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </motion.div>
                 </div>
@@ -61,7 +62,7 @@ export default function Page() {
             <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/85 border-b">
                 <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
                     <a href="#" className="font-semibold tracking-tight grid gap-1 text-center w-45">
-                        <img src="logo-long.svg" alt="St Jo" width="100%" />
+                        <Image src="/logo-long.svg" alt="St Jo" width="175" height="100" />
                         <div>Silicon Valley Study Trip</div>
                     </a>
                     <nav className="hidden sm:flex gap-6 text-sm">
@@ -79,10 +80,12 @@ export default function Page() {
             <section ref={heroRef} className="relative min-h-[78vh] overflow-hidden bg-neutral-950">
                 <motion.div style={{ y: yHero }}
                             className="absolute inset-0">
-                    <img
-                        src="pexels-augustocarneirojr-28003377.jpg"
+                    <Image
+                        src="/pexels-augustocarneirojr-28003377.jpg"
                         alt="San Francisco skyline"
-                        className="w-full h-full object-cover opacity-70"
+                        fill
+                        priority
+                        className="object-cover opacity-70"
                     />
                 </motion.div>
                 <div className="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
@@ -92,7 +95,7 @@ export default function Page() {
                         <span className="block text-gradient">Silicon Valley</span>
                     </motion.h1>
                     <motion.p {...fade} className="mt-6 max-w-2xl text-neutral-300 text-lg">
-                        Voyage d'étude : innovation, culture tech et rencontres professionnelles.
+                        Voyage d&#39;étude : innovation, culture tech et rencontres professionnelles.
                     </motion.p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <a href="#apply" className="btn btn-primary">Pré‑inscription</a>
@@ -133,9 +136,9 @@ export default function Page() {
             {/* Parallax image + copy (dark) */}
             <Strip
                 dark
-                src="IMG_0073.jpeg"
+                src="/IMG_0073.jpeg"
                 alt="Google campus"
-                caption="Rencontrer l'écosystème de l'innovation"
+                caption="Rencontrer l&#39;écosystème de l&#39;innovation"
             />
 
             {/* PROGRAM — alternating cards, slight Material elevation */}
@@ -176,13 +179,13 @@ export default function Page() {
                     <div className="mt-6 divide-y border rounded-3xl overflow-hidden shadow-sm">
                         {[{
                             q:"Le voyage est-il ouvert à tous ?",
-                            a:"Oui, sous réserve de motivation et d'engagement. Des aides financières existent pour les familles.",
+                            a:"Oui, sous réserve de motivation et d&#39;engagement. Des aides financières existent pour les familles.",
                         },{
                             q:"Les repas sont-ils inclus ?",
                             a:"Le petit-déjeuner est inclus. Prévoyez 25–30 $/jour pour repas et transports urbains.",
                         },{
-                            q:"Et si j'ai besoin d'aide financière ?",
-                            a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
+                            q:"Et si j&#39;ai besoin d&#39;aide financière ?",
+                            a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l&#39;équipe.",
                         }].map((item, i) => (
                             <details key={i} className="p-4 bg-white">
                                 <summary className="cursor-pointer font-medium">{item.q}</summary>
@@ -200,7 +203,7 @@ export default function Page() {
                     <div className="mt-8 grid md:grid-cols-3 gap-6 text-sm">
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Participation estimative</h3>
-                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 750 €</span> (vol, hébergement, transferts, 2 jours d'autocar, Alcatraz, vélo, assurances). Repas & transports urbains: env. 250 €.</p>
+                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 750 €</span> (vol, hébergement, transferts, 2 jours d&#39;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: env. 250 €.</p>
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Aides possibles</h3>
@@ -212,7 +215,7 @@ export default function Page() {
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Paiement échelonné</h3>
-                            <p className="mt-2 text-neutral-300">Échéancier sur 6–8 mois possible. Contactez l'équipe pour un plan adapté.</p>
+                            <p className="mt-2 text-neutral-300">Échéancier sur 6–8 mois possible. Contactez l&#39;équipe pour un plan adapté.</p>
                         </motion.div>
                     </div>
                 </div>
@@ -223,11 +226,11 @@ export default function Page() {
                 <div className="mx-auto max-w-6xl px-4 py-24 grid md:grid-cols-2 gap-10 items-center">
                     <motion.div {...fade}>
                         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Je veux participer</h2>
-                        <p className="mt-3 text-neutral-600">Remplissez le formulaire de pré‑inscription. Nous reviendrons vers vous avec les étapes et l'échéancier.</p>
+                        <p className="mt-3 text-neutral-600">Remplissez le formulaire de pré‑inscription. Nous reviendrons vers vous avec les étapes et l&#39;échéancier.</p>
                     </motion.div>
                     <motion.form
                         {...fade}
-                        onSubmit={async (e: any) => {
+                        onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
                             e.preventDefault();
                             if (submitting) return;
                             const form = e.currentTarget as HTMLFormElement;
@@ -239,12 +242,12 @@ export default function Page() {
                                     headers: { "content-type": "application/json" },
                                     body: JSON.stringify(data),
                                 });
-                                const json = await res.json().catch(() => ({}));
-                                if (res.ok && (json as any).ok) {
+                                const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+                                if (res.ok && json.ok) {
                                     form.reset();
                                     pushToast("Pré-inscription envoyée ✅", "success");
                                 } else {
-                                    pushToast(((json as any).error as string) || "Échec de l’envoi.", "error");
+                                    pushToast((json.error as string) || "Échec de l’envoi.", "error");
                                 }
                             } catch {
                                 pushToast("Erreur réseau.", "error");
@@ -279,7 +282,7 @@ export default function Page() {
                             {submitting ? "Envoi…" : "Envoyer"}
                         </button>
                         <p className="mt-2 text-xs text-neutral-500">
-                            En envoyant ce formulaire, vous acceptez d'être contacté au sujet du projet.
+                            En envoyant ce formulaire, vous acceptez d&#39;être contacté au sujet du projet.
                         </p>
                     </motion.form>
                 </div>

@@ -14,7 +14,7 @@ export default function LegalPage() {
                             <p><strong>Adresse :</strong> 26-30 Route de Calais - 62280 St Martin Boulogne</p>
                             <p><strong>Téléphone : 03 21 99 06 99</strong> </p>
                             <p><strong>Site web :</strong> <a href="https://www.st-jo.com/fr/">www.st-jo.com</a></p>
-                            <p><strong>Responsable de la publication :</strong> Stanis Humez, prof. d'informatique</p>
+                            <p><strong>Responsable de la publication :</strong> Stanis Humez, prof. d&#39;informatique</p>
                         </div>
                     </section>
 
