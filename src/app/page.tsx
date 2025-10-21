@@ -169,6 +169,7 @@ export default function Page() {
             <section id="gallery" className="bg-neutral-950 bg-gradient-hero">
               <div className="mx-auto max-w-6xl px-4 pt-24">
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">Galerie photos</h2>
+                <p className="mt-3 text-neutral-300">Retour en images sur nos précédents voyages et découvertes.</p>
               </div>
               <Gallery />
             </section>
