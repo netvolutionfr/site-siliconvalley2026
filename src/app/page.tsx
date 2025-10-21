@@ -38,7 +38,7 @@ export default function Page() {
                             {caption ?? ""}
                         </motion.h2>
                         <motion.p {...fade} className="mt-4 text-neutral-300 dark:text-neutral-300">
-                            Une immersion au cœur de l&#39;innovation : visites de campus et de sièges emblématiques, mises en contexte des métiers, et rencontres selon disponibilités.
+                            Une immersion au cœur de l&apos;innovation : visites de campus et de sièges emblématiques, mises en contexte des métiers, et rencontres selon disponibilités.
                         </motion.p>
                         <motion.ul {...fade} className="mt-6 grid grid-cols-2 gap-3 text-sm">
                             <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">✈️<span className="ml-3">Vol direct AF</span></li>
@@ -47,7 +47,7 @@ export default function Page() {
                             <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">🛡️<span className="ml-3">Assurances incluses</span></li>
                         </motion.ul>
                     </div>
-                    <motion.div style={{ y }} className="order-1 md:order-2 relative rounded-3xl overflow-hidden border shadow-xl">
+                    <motion.div style={{ y }} className="order-1 md:order-2 relative rounded-3xl overflow-hidden border shadow-xl aspect-[16/10] md:aspect-[4/3]">
                         <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </motion.div>
@@ -95,7 +95,7 @@ export default function Page() {
                         <span className="block text-gradient">Silicon Valley</span>
                     </motion.h1>
                     <motion.p {...fade} className="mt-6 max-w-2xl text-neutral-300 text-lg">
-                        Voyage d&#39;étude : innovation, culture tech et rencontres professionnelles.
+                        Voyage d&apos;étude : innovation, culture tech et rencontres professionnelles.
                     </motion.p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <a href="#apply" className="btn btn-primary">Pré‑inscription</a>
@@ -138,13 +138,13 @@ export default function Page() {
                 dark
                 src="/IMG_0073.jpeg"
                 alt="Google campus"
-                caption="Rencontrer l&#39;écosystème de l&#39;innovation"
+                caption="Rencontrer l&apos;écosystème de l&apos;innovation"
             />
 
             {/* PROGRAM — alternating cards, slight Material elevation */}
             <section id="program" className="bg-neutral-50 border-y">
                 <div className="mx-auto max-w-6xl px-4 py-24">
-                    <motion.h2 {...fade} className="text-3xl md:text-4xl font-semibold tracking-tight">Programme indicatif (7 nuits)</motion.h2>
+                    <motion.h2 {...fade} className="text-3xl md:text-4xl font-semibold tracking-tight">Programme indicatif (7 nuits)*</motion.h2>
                     <div className="mt-8 grid md:grid-cols-2 gap-5 text-sm">
                         {[
                             "Jour 1 — Vol direct CDG → SFO, transfert et installation",
@@ -161,6 +161,7 @@ export default function Page() {
                             </motion.div>
                         ))}
                     </div>
+                    <p className="mt-6 text-xs text-neutral-500">* Le programme est indicatif et peut être ajusté en fonction des disponibilités, des conditions locales et des opportunités de rencontres.</p>
                 </div>
             </section>
 
@@ -179,13 +180,13 @@ export default function Page() {
                     <div className="mt-6 divide-y border rounded-3xl overflow-hidden shadow-sm">
                         {[{
                             q:"Le voyage est-il ouvert à tous ?",
-                            a:"Oui, sous réserve de motivation et d&#39;engagement. Des aides financières existent pour les familles.",
+                            a:"Le voyage est proposé aux étudiants post-bac et TG NSI, sous réserve de motivation et d'engagement. Des aides financières existent pour les familles.",
                         },{
                             q:"Les repas sont-ils inclus ?",
                             a:"Le petit-déjeuner est inclus. Prévoyez 25–30 $/jour pour repas et transports urbains.",
                         },{
-                            q:"Et si j&#39;ai besoin d&#39;aide financière ?",
-                            a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l&#39;équipe.",
+                            q:"Et si j'ai besoin d'aide financière ?",
+                            a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
                         }].map((item, i) => (
                             <details key={i} className="p-4 bg-white">
                                 <summary className="cursor-pointer font-medium">{item.q}</summary>
@@ -203,7 +204,7 @@ export default function Page() {
                     <div className="mt-8 grid md:grid-cols-3 gap-6 text-sm">
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Participation estimative</h3>
-                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 750 €</span> (vol, hébergement, transferts, 2 jours d&#39;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: env. 250 €.</p>
+                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 750 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: env. 250 €.</p>
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Aides possibles</h3>
@@ -215,7 +216,7 @@ export default function Page() {
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Paiement échelonné</h3>
-                            <p className="mt-2 text-neutral-300">Échéancier sur 6–8 mois possible. Contactez l&#39;équipe pour un plan adapté.</p>
+                            <p className="mt-2 text-neutral-300">Échéancier sur 6–8 mois possible. Contactez l&apos;équipe pour un plan adapté.</p>
                         </motion.div>
                     </div>
                 </div>
@@ -226,7 +227,7 @@ export default function Page() {
                 <div className="mx-auto max-w-6xl px-4 py-24 grid md:grid-cols-2 gap-10 items-center">
                     <motion.div {...fade}>
                         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Je veux participer</h2>
-                        <p className="mt-3 text-neutral-600">Remplissez le formulaire de pré‑inscription. Nous reviendrons vers vous avec les étapes et l&#39;échéancier.</p>
+                        <p className="mt-3 text-neutral-600">Remplissez le formulaire de pré‑inscription. Nous reviendrons vers vous avec les étapes et l&apos;échéancier.</p>
                     </motion.div>
                     <motion.form
                         {...fade}
@@ -282,7 +283,7 @@ export default function Page() {
                             {submitting ? "Envoi…" : "Envoyer"}
                         </button>
                         <p className="mt-2 text-xs text-neutral-500">
-                            En envoyant ce formulaire, vous acceptez d&#39;être contacté au sujet du projet.
+                            En envoyant ce formulaire, vous acceptez d&apos;être contacté au sujet du projet.
                         </p>
                     </motion.form>
                 </div>
