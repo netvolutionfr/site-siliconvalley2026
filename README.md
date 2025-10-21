@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Silicon Valley Study Trip — Next.js Starter
 
-## Getting Started
+Landing moderne (App Router) inspirée Apple/Material 3.
 
-First, run the development server:
-
+## 1) Création du projet
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Node 18+ recommandé
+npx create-next-app@latest sf-trip --ts --eslint --app --src-dir false --import-alias "@/*"
+cd sf-trip
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2) Dépendances
+```bash
+# Option A — Tailwind v4 (recommandé)
+npm i framer-motion
+npm i -D tailwindcss @tailwindcss/postcss postcss autoprefixer
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Option B — Tailwind v3 (alternative)
+# npm i framer-motion
+# npm i -D tailwindcss@3 postcss autoprefixer
+```bash
+npm i framer-motion
+npm i -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 3) Fichiers à ajouter/remplacer
+- `app/page.tsx` (fourni dans ce dépôt)
+- `app/layout.tsx` (fourni)
+- `app/globals.css` (fourni)
+- `tailwind.config.ts` (fourni — **darkMode: 'media'**)
+- `postcss.config.js` (fourni)
 
-## Learn More
+> Dans `tailwind.config.ts`, vérifiez bien le tableau `content` selon votre structure.
 
-To learn more about Next.js, take a look at the following resources:
+## 4) Config Tailwind minimale
+Dans `app/globals.css` (déjà fourni) :
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+Le thème clair/sombre suit automatiquement le **choix système** (`prefers-color-scheme`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 5) Police & SEO
+- `layout.tsx` charge **Inter** via `next/font` et définit les **metadata** (OpenGraph/Twitter). Remplacez `metadataBase` et `/og.jpg` par vos valeurs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 6) Lancer en dev
+```bash
+npm run dev
+```
+Ouvrez http://localhost:3000
 
-## Deploy on Vercel
+## 7) Build & déploiement
+```bash
+npm run build
+npm start
+```
+- **Vercel** recommandé (import Git, previews automatiques).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 8) Accessibilité & performance
+- Animations respectent `prefers-reduced-motion`.
+- Images optimisées (utilisez idéalement `<Image>` de Next pour vos visuels finaux).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 9) Formulaire
+La section "Je veux participer" utilise un endpoint Formspree placeholder. Remplacez l’URL par la vôtre.
+
+## 10) Aller plus loin (optionnel)
+- Ajouter **shadcn/ui** pour des composants typés (Button, Card, Accordion).
+- Ajouter un **toggle thème** si vous voulez forcer clair/sombre (sinon le système suffit).
+- Mettre en place **@vercel/analytics**.
+
