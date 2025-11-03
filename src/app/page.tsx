@@ -18,6 +18,7 @@ export default function Page() {
     const yHero = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
     const yFloat = useTransform(scrollYProgress, [0, 1], [0, -30]);
     const [submitting, setSubmitting] = useState(false);
+    const [expandGallery, setExpandGallery] = useState(false);
     const [toasts, setToasts] = useState<{ id: number; msg: string; kind: "success" | "error" }[]>([]);
     const pushToast = (msg: string, kind: "success" | "error" = "success") => {
         const id = Date.now();
@@ -44,7 +45,7 @@ export default function Page() {
                             <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">✈️<span className="ml-3">Vol direct AF</span></li>
                             <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">🚌<span className="ml-3">Silicon Valley</span></li>
                             <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">🚲<span className="ml-3">Golden Gate Bridge</span></li>
-                            <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">🛡️<span className="ml-3">Assurances incluses</span></li>
+                            <li className="rounded-2xl border border-neutral-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur p-3 shadow-sm">🛡️<span className="ml-3">San Francisco</span></li>
                         </motion.ul>
                     </div>
                     <motion.div style={{ y }} className="order-1 md:order-2 relative rounded-3xl overflow-hidden border shadow-xl aspect-[16/10] md:aspect-[4/3]">
@@ -76,6 +77,20 @@ export default function Page() {
                 </div>
             </header>
 
+            {/* SECTION - réunion d'information */}
+            <section className="bg-amber-50 border-y border-amber-200">
+                <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/70 text-amber-900 px-3 py-1 border border-amber-200">
+                        <span aria-hidden>📣</span>
+                        <span className="text-sm font-medium">Réunion d’information</span>
+                    </div>
+                    <p className="text-sm text-amber-900">
+                        <strong>Lundi 10 novembre 2025</strong> à <strong>13h</strong> — en <strong>amphi</strong>.
+                        <span className="ml-2">Ouvert aux étudiants intéressés.</span>
+                    </p>
+                </div>
+            </section>
+
             {/* HERO — big Apple-like typography, parallax background */}
             <section ref={heroRef} className="relative min-h-[78vh] overflow-hidden bg-neutral-950">
                 <motion.div style={{ y: yHero }}
@@ -94,6 +109,21 @@ export default function Page() {
                         San Francisco &
                         <span className="block text-gradient">Silicon Valley</span>
                     </motion.h1>
+                    {/* Badge Dates du voyage */}
+                    <motion.div {...fade} className="mt-6">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow-lg backdrop-blur">
+                            <span aria-hidden>📅</span>
+                            <span className="font-medium">Du <strong>8</strong> au <strong>15 avril 2026</strong></span>
+                        </div>
+                    </motion.div>
+
+                    {/* Bandeau Réunion d'information */}
+                    <motion.div {...fade} className="mt-4">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 text-amber-900 px-4 py-2 shadow-md">
+                            <span aria-hidden>📣</span>
+                            <span className="font-medium">Réunion d’information : <strong>lundi 10 novembre 2025 à 13h</strong> — en amphi</span>
+                        </div>
+                    </motion.div>
                     <motion.p {...fade} className="mt-6 max-w-2xl text-neutral-300 text-lg">
                         Voyage d&apos;étude : innovation, culture tech et rencontres professionnelles.
                     </motion.p>
@@ -149,7 +179,7 @@ export default function Page() {
                         {[
                             "Jour 1 — Vol direct CDG → SFO, transfert et installation",
                             "Jour 2 — San Francisco à pied : Downtown, Chinatown, North Beach",
-                            "Jour 3 — Autocar Silicon Valley #1 : Apple Park Visitor Center, Googleplex",
+                            "Jour 3 — Autocar Silicon Valley #1 : Apple, Google, Computer History Museum",
                             "Jour 4 — Fisherman’s Wharf, Pier 39, Lombard Street, match de baseball",
                             "Jour 5 — Vélo Golden Gate → Sausalito, retour en ferry",
                             "Jour 6 — Autocar Silicon Valley #2 : Stanford University, Intel Museum",
@@ -167,11 +197,36 @@ export default function Page() {
 
             {/* IMAGE GALLERY STRIP — parallax panels */}
             <section id="gallery" className="bg-neutral-950 bg-gradient-hero">
-              <div className="mx-auto max-w-6xl px-4 pt-24">
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">Galerie photos</h2>
-                <p className="mt-3 text-neutral-300">Retour en images sur nos précédents voyages et découvertes.</p>
-              </div>
-              <Gallery />
+                <div className="mx-auto max-w-6xl px-4 pt-24">
+                    <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">Galerie photos</h2>
+                    <p className="mt-3 text-neutral-300">Retour en images sur nos précédents voyages et découvertes.</p>
+                </div>
+
+                {/* Wrapper accordéon : aperçu visible en mode replié */}
+                <div
+                    className={[
+                        "relative overflow-hidden transition-[max-height] duration-500 ease-out",
+                        expandGallery ? "max-h-[200rem]" : "max-h-[70vh]" // aperçu visible
+                    ].join(" ")}
+                >
+                    <Gallery />
+                    {/* Dégradé en bas quand replié */}
+                    {!expandGallery && (
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-neutral-950 to-transparent" />
+                    )}
+                </div>
+
+                <div className="mx-auto max-w-6xl px-4 pb-16">
+                    <button
+                        type="button"
+                        onClick={() => setExpandGallery(v => !v)}
+                        className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20 transition"
+                        aria-expanded={expandGallery}
+                        aria-controls="gallery"
+                    >
+                        {expandGallery ? "Réduire la galerie" : "Afficher plus"}
+                    </button>
+                </div>
             </section>
 
             {/* FAQ — light */}
@@ -181,10 +236,22 @@ export default function Page() {
                     <div className="mt-6 divide-y border rounded-3xl overflow-hidden shadow-sm">
                         {[{
                             q:"Le voyage est-il ouvert à tous ?",
-                            a:"Le voyage est proposé aux étudiants post-bac et TG NSI, sous réserve de motivation et d'engagement. Des aides financières existent pour les familles.",
+                            a:"Le voyage est proposé aux étudiants post-bac et TG NSI, sous réserve de motivation et d'engagement.",
+                        },{
+                            q:"Où et comment serons-nous logés ?",
+                            a:"Nos chambres sont réservées à l'auberge de jeunesse Samesun SF Downtown, en plein centre-ville. Chambres de 6 lits avec sanitaires partagés.",
+                        },{
+                            q:"Comment nous déplacerons-nous là-bas ?",
+                            a:"Les transferts aéroport et les journées en Silicon Valley se font en autocar privé. Le reste du temps, nous utilisons les transports en commun, à pied ou à vélo.",
                         },{
                             q:"Les repas sont-ils inclus ?",
-                            a:"Le petit-déjeuner est inclus. Prévoyez 25–30 $/jour pour repas et transports urbains.",
+                            a:"Le petit-déjeuner est inclus. Mais les repas du midi et du soir sont à prévoir : comptez un budget de 25–30 $/jour pour repas et transports urbains.",
+                        },{
+                            q:"Quelles sont les formalités à prévoir ?",
+                            a:"Passeport en cours de validité et ESTA (demande en ligne, env. 23 $). Nous vous guiderons dans les démarches.",
+                        },{
+                            q:"Où, comment et quand s'inscrire ?",
+                            a:"Remplissez le formulaire de pré‑inscription en bas de page. Nous vous recontacterons avec les étapes suivantes.",
                         },{
                             q:"Et si j'ai besoin d'aide financière ?",
                             a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
@@ -205,7 +272,7 @@ export default function Page() {
                     <div className="mt-8 grid md:grid-cols-3 gap-6 text-sm">
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Participation estimative</h3>
-                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 750 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: env. 250 €.</p>
+                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 790 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: prévoir env. 250 €.</p>
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Aides possibles</h3>
@@ -217,7 +284,7 @@ export default function Page() {
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Paiement échelonné</h3>
-                            <p className="mt-2 text-neutral-300">Échéancier sur 6–8 mois possible. Contactez l&apos;équipe pour un plan adapté.</p>
+                            <p className="mt-2 text-neutral-300">Échéancier sur plusieurs mois. Contactez l&apos;équipe pour un plan adapté.</p>
                         </motion.div>
                     </div>
                 </div>
