@@ -202,25 +202,14 @@ export default function Page() {
                     <p className="mt-3 text-neutral-300">Retour en images sur nos précédents voyages et découvertes.</p>
                 </div>
 
-                {/* Wrapper accordéon : aperçu visible en mode replié */}
-                <div
-                    className={[
-                        "relative overflow-hidden transition-[max-height] duration-500 ease-out",
-                        expandGallery ? "max-h-[200rem]" : "max-h-[70vh]" // aperçu visible
-                    ].join(" ")}
-                >
-                    <Gallery />
-                    {/* Dégradé en bas quand replié */}
-                    {!expandGallery && (
-                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-neutral-950 to-transparent" />
-                    )}
-                </div>
+                {/* ✅ Replié = 8 photos ; Ouvert = toutes les photos */}
+                <Gallery initialVisible={8} expanded={expandGallery} />
 
                 <div className="mx-auto max-w-6xl px-4 pb-16">
                     <button
                         type="button"
-                        onClick={() => setExpandGallery(v => !v)}
-                        className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20 transition"
+                        onClick={() => setExpandGallery((v) => !v)}
+                        className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20 transition"
                         aria-expanded={expandGallery}
                         aria-controls="gallery"
                     >
@@ -228,6 +217,7 @@ export default function Page() {
                     </button>
                 </div>
             </section>
+
 
             {/* FAQ — light */}
             <section id="faq" className="bg-gradient-to-b from-neutral-100 to-white">
