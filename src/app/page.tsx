@@ -248,7 +248,7 @@ export default function Page() {
                             a:"Le petit-déjeuner est inclus. Mais les repas du midi et du soir sont à prévoir : comptez un budget de 25–30 $/jour pour repas et transports urbains.",
                         },{
                             q:"Quelles sont les formalités à prévoir ?",
-                            a:"Passeport en cours de validité et ESTA (demande en ligne, env. 23 $). Nous vous guiderons dans les démarches.",
+                            a:"Passeport en cours de validité et ESTA (demande en ligne, $40 valable 2 ans). Nous vous guiderons dans les démarches.",
                         },{
                             q:"Où, comment et quand s'inscrire ?",
                             a:"Remplissez le formulaire de pré‑inscription en bas de page. Nous vous recontacterons avec les étapes suivantes.",
