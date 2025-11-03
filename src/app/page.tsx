@@ -253,6 +253,9 @@ export default function Page() {
                             q:"Où, comment et quand s'inscrire ?",
                             a:"Remplissez le formulaire de pré‑inscription en bas de page. Nous vous recontacterons avec les étapes suivantes.",
                         },{
+                            q:"Combien de places sont-elles disponibles ?",
+                            a:"Le nombre de places proposé est de 36 étudiants. Les inscriptions seront traitées par ordre de réception des pré‑inscriptions, avec priorité aux étudiants post-bac et sections informatiques.",
+                        },{
                             q:"Et si j'ai besoin d'aide financière ?",
                             a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
                         }].map((item, i) => (
