@@ -85,7 +85,7 @@ export default function Page() {
                         <span className="text-sm font-medium">Réunion d’information</span>
                     </div>
                     <p className="text-sm text-amber-900">
-                        <strong>Lundi 10 novembre 2025</strong> à <strong>13h</strong> — en <strong>amphi</strong>.
+                        <strong>Lundi 10 novembre 2025</strong> à <strong>12h30</strong> — en <strong>amphi</strong>.
                         <span className="ml-2">Ouvert aux étudiants intéressés.</span>
                     </p>
                 </div>
@@ -121,7 +121,7 @@ export default function Page() {
                     <motion.div {...fade} className="mt-4">
                         <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 text-amber-900 px-4 py-2 shadow-md">
                             <span aria-hidden>📣</span>
-                            <span className="font-medium">Réunion d’information : <strong>lundi 10 novembre 2025 à 13h</strong> — en amphi</span>
+                            <span className="font-medium">Réunion d’information : <strong>lundi 10 novembre 2025 à 12h30</strong> — en amphi</span>
                         </div>
                     </motion.div>
                     <motion.p {...fade} className="mt-6 max-w-2xl text-neutral-300 text-lg">
