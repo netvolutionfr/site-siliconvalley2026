@@ -180,7 +180,7 @@ export default function Page() {
                             "Jour 1 — Vol direct CDG → SFO, transfert et installation",
                             "Jour 2 — San Francisco à pied : Downtown, Chinatown, North Beach",
                             "Jour 3 — Autocar Silicon Valley #1 : Apple, Google, Computer History Museum",
-                            "Jour 4 — Fisherman’s Wharf, Pier 39, Lombard Street, match de baseball",
+                            "Jour 4 — Fisherman’s Wharf, Pier 39, Lombard Street",
                             "Jour 5 — Vélo Golden Gate → Sausalito, retour en ferry",
                             "Jour 6 — Autocar Silicon Valley #2 : Stanford University, Intel Museum",
                             "Jour 7 — Alcatraz + quartiers : Mission, Castro — bilan",
