@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform, cubicBezier } from "framer-motion";
+import {motion, useScroll, useTransform, cubicBezier, AnimatePresence} from "framer-motion";
 import {useRef, useState} from "react";
 import Gallery from "@/app/components/Gallery";
 import Image from "next/image";
@@ -19,6 +19,7 @@ export default function Page() {
     const yFloat = useTransform(scrollYProgress, [0, 1], [0, -30]);
     const [submitting, setSubmitting] = useState(false);
     const [expandGallery, setExpandGallery] = useState(false);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [toasts, setToasts] = useState<{ id: number; msg: string; kind: "success" | "error" }[]>([]);
     const pushToast = (msg: string, kind: "success" | "error" = "success") => {
         const id = Date.now();
@@ -248,12 +249,40 @@ export default function Page() {
                         },{
                             q:"Et si j'ai besoin d'aide financière ?",
                             a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
-                        }].map((item, i) => (
-                            <details key={i} className="p-4 bg-white">
-                                <summary className="cursor-pointer font-medium">{item.q}</summary>
-                                <p className="mt-2 text-neutral-600">{item.a}</p>
-                            </details>
-                        ))}
+                        }].map((item, i) => {
+                            const open = openIndex === i;
+                            return (
+                                <div key={i} className="bg-white">
+                                    <button
+                                        onClick={() => setOpenIndex(open ? null : i)}
+                                        className="w-full text-left p-4 font-medium cursor-pointer flex justify-between items-center"
+                                    >
+                                        <span>{item.q}</span>
+                                        <span
+                                            className={`transition-transform duration-300 ${
+                                                open ? "rotate-180" : ""
+                                            }`}
+                                        >
+                ▾
+              </span>
+                                    </button>
+                                    <AnimatePresence initial={false}>
+                                        {open && (
+                                            <motion.div
+                                                key="content"
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="px-4 pb-4 text-neutral-600">{item.a}</div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
