@@ -294,7 +294,7 @@ export default function Page() {
                     <div className="mt-8 grid md:grid-cols-3 gap-6 text-sm">
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Participation estimative</h3>
-                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 790 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: prévoir env. 250 €.</p>
+                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 890 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: prévoir env. 250 €.</p>
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Aides possibles</h3>
