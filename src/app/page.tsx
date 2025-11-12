@@ -78,20 +78,6 @@ export default function Page() {
                 </div>
             </header>
 
-            {/* SECTION - réunion d'information */}
-            <section className="bg-amber-50 border-y border-amber-200">
-                <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-white/70 text-amber-900 px-3 py-1 border border-amber-200">
-                        <span aria-hidden>📣</span>
-                        <span className="text-sm font-medium">Réunion d’information</span>
-                    </div>
-                    <p className="text-sm text-amber-900">
-                        <strong>Lundi 10 novembre 2025</strong> à <strong>12h30</strong> — en <strong>amphi</strong>.
-                        <span className="ml-2">Ouvert aux étudiants intéressés.</span>
-                    </p>
-                </div>
-            </section>
-
             {/* HERO — big Apple-like typography, parallax background */}
             <section ref={heroRef} className="relative min-h-[78vh] overflow-hidden bg-neutral-950">
                 <motion.div style={{ y: yHero }}
@@ -118,13 +104,6 @@ export default function Page() {
                         </div>
                     </motion.div>
 
-                    {/* Bandeau Réunion d'information */}
-                    <motion.div {...fade} className="mt-4">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 text-amber-900 px-4 py-2 shadow-md">
-                            <span aria-hidden>📣</span>
-                            <span className="font-medium">Réunion d’information : <strong>lundi 10 novembre 2025 à 12h30</strong> — en amphi</span>
-                        </div>
-                    </motion.div>
                     <motion.p {...fade} className="mt-6 max-w-2xl text-neutral-300 text-lg">
                         Voyage d&apos;étude : innovation, culture tech et rencontres professionnelles.
                     </motion.p>
