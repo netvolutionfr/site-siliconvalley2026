@@ -100,7 +100,7 @@ export default function Page() {
                     <motion.div {...fade} className="mt-6">
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow-lg backdrop-blur">
                             <span aria-hidden>📅</span>
-                            <span className="font-medium">Du <strong>8</strong> au <strong>15 avril 2026</strong></span>
+                            <span className="font-medium">Du <strong>7</strong> au <strong>15 avril 2026</strong></span>
                         </div>
                     </motion.div>
 
@@ -108,7 +108,7 @@ export default function Page() {
                         Voyage d&apos;étude : innovation, culture tech et rencontres professionnelles.
                     </motion.p>
                     <div className="mt-8 flex flex-wrap gap-3">
-                        <a href="#apply" className="btn btn-primary">Pré‑inscription</a>
+                        <a href="#apply" className="btn btn-primary">Dossier d&apos;inscription</a>
                         <a href="#program" className="btn btn-secondary bg-neutral-300">Voir le programme</a>
                     </div>
                 </div>
@@ -221,10 +221,10 @@ export default function Page() {
                             a:"Passeport en cours de validité et ESTA (demande en ligne, $40 valable 2 ans). Nous vous guiderons dans les démarches.",
                         },{
                             q:"Où, comment et quand s'inscrire ?",
-                            a:"Remplissez le formulaire de pré‑inscription en bas de page. Nous vous recontacterons avec les étapes suivantes.",
+                            a:"Les inscriptions finales sont ouvertes : téléchargez le dossier PDF ci-dessous, imprimez-le, complétez-le et déposez-le signé (avec les chèques) avant le 11 décembre 2025.",
                         },{
                             q:"Combien de places sont-elles disponibles ?",
-                            a:"Le nombre de places proposé est de 36 étudiants. Les inscriptions seront traitées par ordre de réception des pré‑inscriptions, avec priorité aux étudiants post-bac et sections informatiques.",
+                            a:"Le nombre de places proposé est de 24 étudiants. Les dossiers complets sont traités par ordre de réception, avec priorité aux étudiants post-bac et sections informatiques.",
                         },{
                             q:"Et si j'ai besoin d'aide financière ?",
                             a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
@@ -273,7 +273,7 @@ export default function Page() {
                     <div className="mt-8 grid md:grid-cols-3 gap-6 text-sm">
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Participation estimative</h3>
-                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 890 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: prévoir env. 250 €.</p>
+                            <p className="mt-2 text-neutral-300">À partir de <span className="font-semibold text-white">1 920 €</span> (vol, hébergement, transferts, 2 jours d&apos;autocar, Alcatraz, vélo, assurances). Repas & transports urbains: prévoir env. 250 €.</p>
                         </motion.div>
                         <motion.div {...fade} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
                             <h3 className="font-semibold">Aides possibles</h3>
@@ -295,66 +295,30 @@ export default function Page() {
             <section id="apply" className="bg-gradient-to-b from-neutral-100 to-white">
                 <div className="mx-auto max-w-6xl px-4 py-24 grid md:grid-cols-2 gap-10 items-center">
                     <motion.div {...fade}>
-                        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Je veux participer</h2>
-                        <p className="mt-3 text-neutral-600">Remplissez le formulaire de pré‑inscription. Nous reviendrons vers vous avec les étapes et l&apos;échéancier.</p>
+                        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Inscriptions ouvertes</h2>
+                        <p className="mt-3 text-neutral-600">Phase finale : le dossier papier est à déposer avant le <strong>11 décembre 2025</strong> (pas d&apos;inscription en ligne à cette étape).</p>
                     </motion.div>
-                    <motion.form
-                        {...fade}
-                        onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-                            e.preventDefault();
-                            if (submitting) return;
-                            const form = e.currentTarget as HTMLFormElement;
-                            const data = Object.fromEntries(new FormData(form).entries());
-                            try {
-                                setSubmitting(true);
-                                const res = await fetch("/api/contact", {
-                                    method: "POST",
-                                    headers: { "content-type": "application/json" },
-                                    body: JSON.stringify(data),
-                                });
-                                const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
-                                if (res.ok && json.ok) {
-                                    form.reset();
-                                    pushToast("Pré-inscription envoyée ✅", "success");
-                                } else {
-                                    pushToast((json.error as string) || "Échec de l’envoi.", "error");
-                                }
-                            } catch {
-                                pushToast("Erreur réseau.", "error");
-                            } finally {
-                                setSubmitting(false);
-                            }
-                        }}
-                        className="bg-white text-neutral-900 rounded-3xl p-6 border shadow-md"
-                    >
-                        {/* honeypot anti-bot */}
-                        <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
-
-                        <label className="block text-sm font-medium">Nom</label>
-                        <input required name="lastName" className="mt-1 w-full rounded-xl border px-3 py-2 shadow-sm" />
-
-                        <label className="block text-sm font-medium">Prénom</label>
-                        <input required name="firstName" className="mt-1 w-full rounded-xl border px-3 py-2 shadow-sm" />
-
-                        <label className="block text-sm font-medium">Classe</label>
-                        <input required name="section" className="mt-1 w-full rounded-xl border px-3 py-2 shadow-sm" />
-
-                        <label className="block mt-4 text-sm font-medium">Email</label>
-                        <input required type="email" name="email" className="mt-1 w-full rounded-xl border px-3 py-2 shadow-sm" />
-
-                        <label className="block mt-4 text-sm font-medium">Motivation (2–3 lignes)</label>
-                        <textarea name="motivation" rows={3} className="mt-1 w-full rounded-xl border px-3 py-2 shadow-sm" />
-
-                        <button
-                            disabled={submitting}
-                            className="mt-4 w-full rounded-xl bg-neutral-900 text-white px-4 py-3 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {submitting ? "Envoi…" : "Envoyer"}
-                        </button>
-                        <p className="mt-2 text-xs text-neutral-500">
-                            En envoyant ce formulaire, vous acceptez d&apos;être contacté au sujet du projet.
+                    <motion.div {...fade} className="bg-white text-neutral-900 rounded-3xl p-6 border shadow-md">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-xs font-semibold">
+                            Inscriptions lancées
+                        </div>
+                        <p className="mt-3 text-neutral-700">
+                            Téléchargez le dossier PDF, imprimez-le, complétez-le et remettez-le signé avec les chèques.
                         </p>
-                    </motion.form>
+                        <ol className="mt-4 list-decimal pl-5 space-y-2 text-sm text-neutral-700">
+                            <li>Télécharger le dossier (bouton ci-dessous).</li>
+                            <li>Imprimer, remplir et signer le document.</li>
+                            <li>Déposer le dossier complet avant le 11 décembre 2025.</li>
+                        </ol>
+                        <a
+                            href="/pdf/Formulaire%20d%E2%80%99inscription%20voyage%20San%20Francisco%20Silicon%20Valley.pdf"
+                            download
+                            className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-neutral-900 text-white px-4 py-3 shadow-md hover:shadow-lg transition"
+                        >
+                            📄 Télécharger le dossier PDF
+                        </a>
+                        <p className="mt-3 text-xs text-neutral-500">Aucune inscription en ligne pour cette étape finale.</p>
+                    </motion.div>
                 </div>
             </section>
 
