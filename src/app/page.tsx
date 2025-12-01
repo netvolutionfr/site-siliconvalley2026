@@ -224,7 +224,7 @@ export default function Page() {
                             a:"Les inscriptions finales sont ouvertes : téléchargez le dossier PDF ci-dessous, imprimez-le, complétez-le et déposez-le signé (avec les chèques) avant le 11 décembre 2025.",
                         },{
                             q:"Combien de places sont-elles disponibles ?",
-                            a:"Le nombre de places proposé est de 24 étudiants. Les dossiers complets sont traités par ordre de réception, avec priorité aux étudiants post-bac et sections informatiques.",
+                            a:"Le nombre de places proposé est de 24 étudiants. Les dossiers complets sont traités par ordre de réception et réservés aux étudiants post-bac.",
                         },{
                             q:"Et si j'ai besoin d'aide financière ?",
                             a:"Fonds social, aides régionales, mécénat et actions élèves : parlez-en en toute confidentialité à l'équipe.",
@@ -318,6 +318,9 @@ export default function Page() {
                             📄 Télécharger le dossier PDF
                         </a>
                         <p className="mt-3 text-xs text-neutral-500">Aucune inscription en ligne pour cette étape finale.</p>
+                        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-800 px-3 py-1 text-xs font-semibold">
+                            Réservé aux étudiants post-bac
+                        </div>
                     </motion.div>
                 </div>
             </section>
